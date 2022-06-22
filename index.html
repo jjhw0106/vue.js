@@ -8,14 +8,24 @@
 </head>
 <body>
     <div id="app">
-        {{message}}
+        <header>
+            <h3>{{message}}</h3>
+        </header>
+        <todo-list></todo-list>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    
+    
+    <script src="http://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script src="app.js"></script>
     <script>
+        // var todoList ={
+        //     template: '<div>오늘 할 일</div>'
+        // };
+        
         new Vue({
-            el: '#app',
-            data:{
-                message: 'Hello Vue.js!'    
+            el:'#app',
+            components: {
+                'todo-list': todoList
             }
         });
     </script>
