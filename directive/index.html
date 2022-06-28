@@ -7,14 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="'app">
-        <a v-if=""flag">두잇 Vue.js</a>
+    <div id="app">
+        <a v-if="flag">두잇 Vue.js</a>
         <ul>
-            <li v-for="system in systems">{{system}}</li>
+            <li v-for="system in systems">{{ system }}</li>
         </ul>
         <p v-show="flag">두잇 vue.js</p>
         <h5 v-bind:id="uid">뷰 입문서</h5>
         <button v-on:click="popupAlert">경고 창 버튼</button>
+        <button v-on:click="clickBtn(10)">클릭</button>
+        <button v-on:click="eventBtn">이벤트</button>
+        <p>{{ reversedMessage }}</p>
+        <input v-model="message">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
@@ -24,11 +28,28 @@
             data:{
                 flag: true,
                 systems:['android','ios','window'],
-                uid: 10
+                uid: 10,
+                message: 'Hello, VueJS',
             },
             methods: {
                 popupAlert: function(){
                     return alert('경고 창 표시');
+                },
+                clickBtn: function(num){
+                    return alert('you clicked'+ num+ 'times');
+                },
+                eventBtn: function(event){
+                    console.log(event);
+                }
+            },
+            computed:{
+                reversedMessage: function(){
+                    return this.message.split('').reverse().join('');
+                }
+            },
+            watch: {
+                message: function(data){
+                    console.log("Message의 값이 변경", data);
                 }
             }
         });
