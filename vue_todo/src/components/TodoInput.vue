@@ -5,9 +5,15 @@
             <i class="addBtn fas fa-plus" aria-hidden="true"></i>
         </span>
     </div>
+    <!-- <div class="inputBox shadow">
+        <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keyup.enter="addTodo">
+        <span class="addContainer" v-on:click="addTodo">
+            <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+        </span>
+    </div> -->
 </template>
 
-<script>
+<script> 
 export default { 
     data(){
         return{
@@ -18,7 +24,7 @@ export default {
         addTodo(){
             if(this.newTodoItem !== ""){
                 var value = this.newTodoItem && this.newTodoItem.trim();
-                localStorage.setItem(value, value);
+                this.$emit('addTodo',value);
                 this.clearInput();
             }
         },

@@ -2,7 +2,7 @@
     <section>
         <ul>
             <!-- index는 v-for디렉티브가 기본적으로 제공하는 변수 -->
-            <li v-for="(todoItem, index) in todoItems" :key="todoItem" class="shadow">
+            <li v-for="(todoItem, index) in propsdata" :key="todoItem" class="shadow">
                 <i class="checkBtn fas fa-check" aria-hidden="true">
                     {{ todoItem }}
                 </i>
@@ -16,24 +16,13 @@
 
 <script>
 export default { 
-    data(){
-        return {
-            todoItems: []
-        }
-    },
+    props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index){
             localStorage.removeItem(todoItem);
             this.todoItems.splice(index, 1);
         }
-    },
-    created(){
-        if(localStorage.length>0){
-            for(var i =0; i < localStorage.length; i++){
-                this.todoItems.push(localStorage.key(i));
-            }
-        }
-    }, 
+    } 
 }
 
 </script>
